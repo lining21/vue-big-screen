@@ -1,0 +1,119 @@
+@import './_variables.less';
+
+a {
+  color: #343440;
+  text-decoration: none;
+}
+
+.clearfix {
+  &::after {
+    content: "";
+    display: table;
+    height: 0;
+    line-height: 0;
+    visibility: hidden;
+    clear: both;
+  }
+}
+
+//浮动
+.float-right {
+  float: right;
+}
+
+//浮动
+.float-left {
+  float: left;
+}
+
+// 字体加粗
+.font-bold {
+  font-weight: bold;
+}
+
+//文章一行显示，多余省略号显示
+.title-item {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+each(.colors(), .(@v, @k){
+  .bg-@{k} {
+    background-color: @v;
+  }
+  .text-@{k} {
+    color: @v;
+  } 
+})
+
+each(.flex-jc(), .(@v, @k){
+  .justify-@{k} {
+    justify-content: @v;
+  } 
+})
+
+each(.flex-ai(), .(@v, @k){
+  .items-@{k} {
+    align-items: @v;
+  }
+})
+
+//.mt-1 => margin top
+//spacing
+
+each(.spacing-sizes(), .(@sizev, @sizek) {
+  //.p-1
+  .p-@{sizek} {
+    padding: @spacing-base-size * @sizev;
+  }
+  //.px-1
+  .px-@{sizek} {
+    padding-left: @spacing-base-size * @sizev;
+    padding-right: @spacing-base-size * @sizev;
+  }
+  //.py-1
+  .py-@{sizek} {
+    padding-top: @spacing-base-size * @sizev;
+    padding-bottom: @spacing-base-size * @sizev;
+  }
+  // .pt-1
+  each(.spacing-directions(), .(@direcv, @direck) {
+    .p@{direck}-@{sizek} {
+      padding-@{direcv}: @spacing-base-size * @sizev;
+    }
+  })
+})
+
+each(.spacing-sizes(), .(@sizev, @sizek) {
+  //.m-1
+  .m-@{sizek} {
+    margin: @spacing-base-size * @sizev;
+  }
+  //.mx-1
+  .mx-@{sizek} {
+    margin-left: @spacing-base-size * @sizev;
+    margin-right: @spacing-base-size * @sizev;
+  }
+  //.my-1
+  .my-@{sizek} {
+    margin-top: @spacing-base-size * @sizev;
+    margin-bottom: @spacing-base-size * @sizev;
+  }
+  // .mt-1
+  each(.spacing-directions(), .(@direcv, @direck) {
+    .m@{direck}-@{sizek} {
+      margin-@{direcv}: @spacing-base-size * @sizev;
+    }
+  })
+})
+
+
